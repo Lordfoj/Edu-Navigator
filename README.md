@@ -38,7 +38,7 @@ The project centralizes college information and presents it in a simple, accessi
 
 Edu-Navigator/
 ├── home_page/
-  ── index.html
+  |── index.html
 ├── arts_clg/
 ├── commerce_clg/
 ├── science_clg/
@@ -48,3 +48,32 @@ Edu-Navigator/
 ├── login/
 ├── profile/
 ├── .gitignore
+
+
+🎯 Target Users
+
+Students after 10th & 12th
+
+Rural and semi-urban students
+
+Parents seeking college information
+
+Counselors and educators
+
+🔮 Future Enhancements
+
+🔍 College search & filter system
+
+🗺 Google Maps integration
+
+🧾 Admission eligibility checker
+
+🔐 User accounts & saved colleges
+
+🌐 Backend integration for dynamic data
+
+👨‍💻 Author
+
+Anant Saikiran Prabhu
+Computer Science Engineering Student
+GitHub: https://github.com/Lordfoj
