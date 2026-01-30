@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Counseling Session - Edu-Navigator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            color: #eab308;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 18px 24px;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            padding: 18px 24px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            background-color: #eab308;
+            color: #333;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: white;
+            padding: 18px 24px;
+            cursor: pointer;
+        }
+
+        .hamburger input {
+            display: none;
+        }
+
+        .hamburger-label {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Form Section */
+        .form-container {
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-container h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border-radius: 5px;
+        }
+
+        .btn-submit {
+            background-color: #eab308;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #eab308;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section ul {
+            color: #ccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #eab308;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: #ccc;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #eab308;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .newsletter-button {
+            padding: 10px 15px;
+            background: #eab308;
+            color: #333;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #555;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            margin-top: 30px;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar-links a {
+                width: 100%;
+                text-align: left;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger-label {
+                display: block;
+            }
+
+            .hamburger input:checked ~ .navbar-links {
+                display: flex;
+            }
+
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" aria-label="Main navigation">
+        <a href="../home_page/homepage.html" class="logo">Edu-Navigator</a>
+        <label class="hamburger-label" for="hamburger-toggle"><i class="fas fa-bars hamburger"></i></label>
+        <input type="checkbox" id="hamburger-toggle" class="hamburger">
+        <ul class="navbar-links">
+            <li><a href="../home_page/homepage.html" class="navbar-link">Home</a></li>
+            <li><a href="../science_clg/science.html" class="navbar-link">Science</a></li>
+            <li><a href="../commerce_clg/commerce.html" class="navbar-link">Commerce</a></li>
+            <li><a href="../arts_clg/arts.html" class="navbar-link">Arts</a></li>
+            <li><a href="../diploma_clg/diploma.html" class="navbar-link">Diploma</a></li>
+            <li><a href="../diploma_clg/diploma.html" class="navbar-link">About Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2>Request Free Counseling Session</h2>
+        <form id="counselingForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="fullName">Full Name <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required aria-label="Full Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email <span style="color: red;">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" required aria-label="Email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" aria-label="Phone Number">
+            </div>
+            <div class="form-group">
+                <label for="stream">Preferred Stream <span style="color: red;">*</span></label>
+                <select class="form-control" id="stream" name="stream" required aria-label="Preferred Stream">
+                    <option value="" disabled selected>Select Stream</option>
+                    <option value="Science">Science</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Undecided">Undecided</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sessionTime">Preferred Session Time</label>
+                <input type="datetime-local" class="form-control" id="sessionTime" name="sessionTime" aria-label="Preferred Session Time">
+            </div>
+            <div class="form-group">
+                <label for="message">Message/Notes</label>
+                <textarea class="form-control" id="message" name="message" rows="4" aria-label="Message or Notes"></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit">Request Session</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Edu-Navigator</h3>
+                <p>Edu-Navigator helps students find the perfect college and course to shape their future.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> support@edunavigator.com</p>
+                    <p><i class="fas fa-phone"></i> +91-123-456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 456 Education Lane, City, India</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#science">Science</a></li>
+                    <li><a href="#commerce">Commerce</a></li>
+                    <li><a href="#arts">Arts</a></li>
+                    <li><a href="#diploma">Diploma</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="/admissions">Admissions Guide</a></li>
+                    <li><a href="/scholarships">Scholarships</a></li>
+                    <li><a href="/careers">Career Paths</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Stay Connected</h3>
+                <div class="social-links">
+                    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email for newsletter">
+                        <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Edu-Navigator. All Rights Reserved. | 
+                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/terms">Terms of Service</a> | 
+                <a href="/contact">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('counselingForm');
+            if (form.checkValidity()) {
+                alert('Thank you! Your counseling session request has been submitted.');
+                form.reset();
+            } else {
+                alert('Please fill in all required fields correctly.');
+            }
+        }
+    </script>
+</body>
+</html>

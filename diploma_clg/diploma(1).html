@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma Courses - Edu-Navigator</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Menu Bar Styling */
+        .navbar {
+    background-color: #333;
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+    color: #eab308;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 18px 24px;
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 18px 24px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.navbar-links a:hover {
+    background-color: #eab308;
+    color: #333;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    color: white;
+    padding: 18px 24px;
+    cursor: pointer;
+}
+
+.hamburger input {
+    display: none;
+}
+
+.hamburger-label {
+    display: none;
+    cursor: pointer;
+}
+
+                
+        /* Responsive Button Styling */
+        .cta-button {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 9999px;
+            border: 2px solid black;
+            text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
+            min-width: 120px;
+            text-decoration: none;
+            color: #000;
+        }
+        .cta-button:hover {
+            transform: scale(1.1);
+            background-color: #eab308;
+        }
+
+        /* Responsive Button Styling */
+        @media screen and (max-width: 640px) {
+            .cta-button {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.875rem;
+                min-width: 100px;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+                min-width: 80px;
+            }
+        }
+
+        /* Header Section */
+        .header-container {
+            position: relative;
+            height: 500px;
+            background-image: url('diploma clg.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            margin-left: 80px;
+            text-align: left;
+        }
+
+        .header-container h1 {
+            margin: 0;
+            font-size: 68px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
+        }
+
+        .header-container p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0);
+        }
+
+        /* Course and College Containers */
+        .course-container, .college-container {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .course-image, .college-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .course-image img, .college-image img {
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .course-image button, .college-image button {
+            background-color: #2f4f4f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .course-image button:hover, .college-image button:hover {
+            background-color: #4682b4;
+        }
+
+        .course-content h2, .college-content h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .course-content p, .college-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Ensure equal spacing between containers */
+        .course-section, .college-section {
+            margin-bottom: 20px;
+        }
+        
+                        /* Footer Styling */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            color: #4682b4;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer-section p, .footer-section ul {
+            margin: 0;
+            padding: 0;
+            color: #e0e6ed;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #e0e6ed;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #4682b4;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #4682b4;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-media a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #4682b4;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 15px;
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #2f4f4f;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+
+        .footer-bottom a {
+            color: #e0e6ed;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-bottom a:hover {
+            color: #4682b4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Bar -->
+    <div class="navbar" aria-label="Main navigation">
+        <a href="../home_page/homepage.html" class="logo">Edu-Navigator</a>
+        <label class="hamburger-label" for="hamburger-toggle"><i class="fas fa-bars hamburger"></i></label>
+        <input type="checkbox" id="hamburger-toggle" class="hamburger">
+        <ul class="navbar-links">
+            <li><a href="../home_page/homepage.html" class="navbar-link">Home</a></li>
+            <li><a href="../science_clg/science.html" class="navbar-link">Science</a></li>
+            <li><a href="../commerce_clg/commerce.html" class="navbar-link">Commerce</a></li>
+            <li><a href="../arts_clg/arts.html" class="navbar-link">Arts</a></li>
+            <li><a href="../diploma_clg/diploma.html" class="navbar-link">Diploma</a></li>
+            <li><a href="../diploma_clg/diploma.html" class="navbar-link">About Us</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Header Container -->
+    <div class="header-container">
+        <div class="header-content">
+            <h1>Diploma Colleges</h1>
+            <p>Explore top diploma colleges to gain practical skills for your career</p>
+        </div>
+    </div>
+
+ 
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\Government Polytechnic, Kolhapur.jpg" alt="Government Polytechnic, Kolhapur">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>Government Polytechnic, Kolhapur</h2>
+                <p>A highly sought-after government institution known for its affordable fees and recognized diploma.</p>
+                <p>It has a long-standing reputation for experienced faculty and a strong curriculum in core engineering branches.</p>
+                <p>A diploma from here is a solid foundation for a government job or direct entry into a degree course.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\sgp.webp" alt="Sanjay Ghodawat Polytechnic, Atigre">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>Sanjay Ghodawat Polytechnic, Atigre (Kolhapur)</h2>
+                <p>Part of a large, modern university campus with state-of-the-art infrastructure and excellent facilities.</p>
+                <p>Known for its industry-focused approach, strong placement support, and emphasis on practical, hands-on learning.</p>
+                <p>A great choice for students seeking a dynamic environment and exposure to modern technology.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\D.K.T.E. Yashwantrao Chavan Polytechnic, Ichalkaranji.jpg" alt="D.K.T.E. Yashwantrao Chavan Polytechnic, Ichalkaranji">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>D.K.T.E. Yashwantrao Chavan Polytechnic, Ichalkaranji</h2>
+                <p>Located in the industrial hub of Ichalkaranji, DKTE is renowned for its strong industry connections.</p>
+                <p>The college provides excellent practical exposure and has well-equipped labs for branches like Mechanical and Electrical.</p>
+                <p>An ideal choice for students who want industry-relevant skills and good job prospects after their diploma.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\Vivekanand Polytechnic, Kolhapur.png" alt="Vivekanand Polytechnic, Kolhapur">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>Vivekanand Polytechnic, Kolhapur</h2>
+                <p>This college is known for its disciplined academic environment and commitment to quality technical education.</p>
+                <p>It focuses on building a strong theoretical and practical base for students across various engineering streams.</p>
+                <p>A solid choice for students looking for a structured learning atmosphere for future studies or jobs.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\PVPIT Polytechnic, Budhgaon (Sangli).jpg" alt="PVPIT Polytechnic, Budhgaon (Sangli)">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>PVPIT Polytechnic, Budhgaon (Sangli)</h2>
+                <p>Being part of an integrated campus with a degree engineering college gives students a clear pathway for higher education.</p>
+                <p>Known for its modern facilities, focus on project-based learning, and encouraging innovation.</p>
+                <p>An excellent option for students who are sure they want to pursue a B.E./B.Tech degree after their diploma.</p>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\Government Polytechnic, Sangli.jpg" alt="Government Polytechnic, Sangli">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>Government Polytechnic, Sangli</h2>
+                <p>Another reputable government college known for its affordability and established name in the Sangli region.</p>
+                <p>It offers a comprehensive curriculum in fundamental engineering branches like Civil, Mechanical, and Computer.</p>
+                <p>A preferred choice for students aiming for a strong, recognized diploma that opens many career doors.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="college-section">
+        <div class="college-container">
+            <div class="college-image">
+                <img src="C:\Users\anant\Desktop\cep\diploma_clg\images\Appasaheb Birnale Polytechnic, Sangli.jpg" alt="Appasaheb Birnale Polytechnic, Sangli">
+                <a href="colleg_info/D.R. Mane Arts & Commerce College, Kaga/D.R. Mane Arts & Commerce College, Kaga.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="college-content">
+                <h2>Appasaheb Birnale Polytechnic, Sangli</h2>
+                <p>With a long-standing reputation in Sangli, this college is known for its focus on practical, skill-based training.</p>
+                <p>It has a strong alumni network and provides a solid grounding in core engineering principles.</p>
+                <p>Well-suited for students who value a traditional and disciplined approach to technical education.</p>
+            </div>
+        </div>
+    </div>
+
+        <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Edu-Navigator</h3>
+                <p>Edu-Navigator helps students find the perfect college and course to shape their future. Explore our resources and start your journey today!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> support@edunavigator.com</p>
+                    <p><i class="fas fa-phone"></i> +91-123-456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 456 Education Lane, City, India</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#science">Science</a></li>
+                    <li><a href="#commerce">Commerce</a></li>
+                    <li><a href="#arts">Arts</a></li>
+                    <li><a href="#diploma">Diploma</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="/admissions">Admissions Guide</a></li>
+                    <li><a href="/scholarships">Scholarships</a></li>
+                    <li><a href="/careers">Career Paths</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Stay Connected</h3>
+                <div class="social-media">
+                    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Edu-Navigator. All Rights Reserved. | 
+                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/terms">Terms of Service</a> | 
+                <a href="/contact">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

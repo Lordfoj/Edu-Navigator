@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu-Navigator - User Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Custom Color Palette */
+    :root {
+      --primary: #eab308;
+      --dark: #333;
+      --light: #ffffff;
+    }
+
+    /* Sidebar - Fixed on scroll */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 16rem; /* 64 * 0.25rem = 256px */
+      background-color: var(--light);
+      border-right: 2px solid #ddd;
+      overflow-y: auto;
+      z-index: 40;
+      transition: transform 0.3s ease-in-out;
+    }
+    .sidebar.mobile-hidden {
+      transform: translateX(-100%);
+    }
+
+    /* Main Content - Starts after sidebar */
+    .main-content {
+      margin-left: 16rem; /* Same as sidebar width */
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* Card Style */
+    .dashboard-card {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+      background-color: var(--light);
+    }
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary);
+    }
+
+    /* Button */
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--dark);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #ca8a04;
+      transform: scale(1.05);
+    }
+
+    /* Badge */
+    .badge-pending 
+    { 
+      background-color: #fef3c7; 
+      color: #92400e; 
+    }
+    .badge-accepted { 
+      background-color: #d1fae5; 
+      color: #065f46; 
+    }
+    .badge-shortlisted { 
+      background-color: #fef9c7; 
+      color: #7c2d12; 
+    }
+
+    /* Progress */
+    .progress-fill {
+      background-color: var(--primary);
+      transition: width 1s ease-in-out;
+    }
+
+    /* Mobile Overlay */
+    #mobile-overlay {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Responsive: On mobile, sidebar overlays */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        max-width: 16rem;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+<!-- Back to Home Button -->
+<a href="C:\Users\anant\Desktop\cep\home_page\homepage.html" 
+   class="fixed bottom-6 right-6 z-50 
+          w-14 h-14 bg-yellow-400 hover:bg-yellow-500 
+          rounded-full shadow-2xl flex items-center justify-center 
+          text-2xl font-bold text-black 
+          transition-all duration-300 hover:scale-110 
+          md:bottom-8 md:right-8">
+  <i class="fas fa-home"></i>
+</a>
+
+  <!-- Mobile Menu Toggle -->
+  <button id="mobile-menu-toggle" class="fixed top-4 left-4 z-50 p-2 bg-white rounded-full shadow-md md:hidden">
+    <i class="fas fa-bars text-gray-700 text-xl"></i>
+  </button>
+
+  <!-- Sidebar (Fixed) -->
+  <aside id="sidebar" class="sidebar">
+    <div class="p-6">
+      <!-- Profile -->
+      <div class="text-center mb-8">
+        <div class="w-20 h-20 mx-auto rounded-full bg-yellow-400 flex items-center justify-center text-2xl font-bold text-black shadow">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h2 class="mt-3 text-lg font-bold text-gray-800">User name</h2>
+        <p class="text-sm text-gray-500">12th Commerce</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 mt-2">
+          Verified
+        </span>
+      </div>
+
+      <!-- Menu -->
+      <nav class="space-y-1">
+        <a href="#profile" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-yellow-50 transition-colors group">
+          <i class="fas fa-user w-5 mr-3"></i>
+          <span>Profile</span>
+        </a>
+        <a href="#dashboard" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-yellow-50 transition-colors group">
+          <i class="fas fa-tachometer-alt w-5 mr-3"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#applications" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-yellow-50 transition-colors group">
+          <i class="fas fa-file-alt w-5 mr-3"></i>
+          <span>Applications</span>
+          <span class="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">3</span>
+        </a>
+        <a href="#shortlists" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-yellow-50 transition-colors group">
+          <i class="fas fa-star w-5 mr-3"></i>
+          <span>Shortlisted</span>
+          <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">5</span>
+        </a>
+        <a href="#counseling" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-yellow-50 transition-colors group">
+          <i class="fas fa-calendar w-5 mr-3"></i>
+          <span>Counseling</span>
+        </a>
+      </nav>
+
+      <!-- Quick Actions -->
+      <div class="mt-8 pt-6 border-t border-gray-200">
+        <h3 class="text-sm font-semibold text-gray-700 mb-3">Quick Actions</h3>
+        <div class="grid grid-cols-2 gap-2">
+          <button class="btn-primary flex flex-col items-center p-3 rounded-lg text-sm">
+            <i class="fas fa-plus text-lg mb-1"></i>
+            Apply
+          </button>
+          <button class="bg-gray-800 text-white flex flex-col items-center p-3 rounded-lg text-sm hover:bg-gray-700 transition">
+            <i class="fas fa-calendar-plus text-lg mb-1"></i>
+            Book
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content (Fills the blank space to the right) -->
+  <main class="main-content">
+    <!-- Profile Section (Top) -->
+    <section id="profile" class="mb-8">
+      <div class="dashboard-card p-6 rounded-lg">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Profile Summary</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Left: Basic Info -->
+          <div>
+            <div class="space-y-4">
+              <div>
+                <p class="text-sm text-gray-600">Full Name</p>
+                <p class="font-medium text-gray-900">Priya Sharma</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Email</p>
+                <p class="font-medium text-gray-900">priya.sharma@email.com</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Phone</p>
+                <p class="font-medium text-gray-900">+91 98765 43210</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Address</p>
+                <p class="font-medium text-gray-900">Kolhapur, Maharashtra</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Academic Info -->
+          <div>
+            <div class="space-y-4">
+              <div>
+                <p class="text-sm text-gray-600">10th Percentage</p>
+                <div class="flex items-center justify-between mt-1">
+                  <span class="text-lg font-bold text-gray-900">88.5%</span>
+                  <div class="w-20 bg-gray-200 rounded-full h-2">
+                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 88%"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Preferred Stream</p>
+                <p class="font-medium text-gray-900">Commerce</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Current Status</p>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  <i class="fas fa-check-circle mr-1"></i> Active Student
+                </span>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Next Counseling</p>
+                <p class="font-medium text-gray-900">Dec 15, 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Button -->
+        <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+          <button class="btn-primary w-full md:w-auto px-6 py-2 rounded-lg text-sm">
+            <i class="fas fa-edit mr-2"></i>Edit Profile
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section id="dashboard" class="mb-8">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Application Overview</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="dashboard-card p-5 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-600">Applications</p>
+              <p class="text-2xl font-bold text-gray-900">8</p>
+            </div>
+            <i class="fas fa-file-alt text-yellow-600 text-xl"></i>
+          </div>
+          <div class="mt-3">
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-fill h-2 rounded-full" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card p-5 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-600">Shortlisted</p>
+              <p class="text-2xl font-bold text-gray-900">5</p>
+            </div>
+            <i class="fas fa-star text-yellow-600 text-xl"></i>
+          </div>
+        </div>
+
+        <div class="dashboard-card p-5 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-600">Accepted</p>
+              <p class="text-2xl font-bold text-gray-900">2</p>
+            </div>
+            <i class="fas fa-check text-green-600 text-xl"></i>
+          </div>
+        </div>
+
+        <div class="dashboard-card p-5 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-600">Pending</p>
+              <p class="text-2xl font-bold text-gray-900">3</p>
+            </div>
+            <i class="fas fa-clock text-orange-600 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Applications + Counseling -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Recent Applications -->
+      <section id="applications" class="dashboard-card p-6 rounded-lg">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Applications</h3>
+        <div class="space-y-3">
+          <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-black font-bold text-sm mr-3">
+              SC
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-gray-900">Shahaji College</p>
+              <p class="text-xs text-gray-500">Commerce • 3 days ago</p>
+            </div>
+            <span class="badge-pending text-xs px-2 py-1 rounded-full">Pending</span>
+          </div>
+
+          <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+              VC
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-gray-900">Vivekanand College</p>
+              <p class="text-xs text-gray-500">Science • 5 days ago</p>
+            </div>
+            <span class="badge-accepted text-xs px-2 py-1 rounded-full">Accepted</span>
+          </div>
+
+          <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-sm mr-3">
+              GG
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-gray-900">GKG College</p>
+              <p class="text-xs text-gray-500">Arts • 1 week ago</p>
+            </div>
+            <span class="badge-shortlisted text-xs px-2 py-1 rounded-full">Shortlisted</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Counseling -->
+      <section id="counseling" class="dashboard-card p-6 rounded-lg">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Upcoming Counseling</h3>
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-l-blue-500">
+            <p class="font-medium text-gray-900">Science</p>
+            <p class="text-sm text-gray-600">Tomorrow, 10 AM</p>
+            <button class="mt-2 w-full bg-blue-600 text-white py-1.5 rounded text-sm hover:bg-blue-700">Join</button>
+          </div>
+          <div class="p-4 bg-green-50 rounded-lg border-l-4 border-l-green-500">
+            <p class="font-medium text-gray-900">Commerce</p>
+            <p class="text-sm text-gray-600">Dec 15, 2 PM</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1.5 rounded text-sm hover:bg-green-700">View</button>
+          </div>
+          <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-l-yellow-500">
+            <p class="font-medium text-gray-900">Arts</p>
+            <p class="text-sm text-gray-600">Dec 18, 11 AM</p>
+            <button class="mt-2 w-full bg-yellow-600 text-white py-1.5 rounded text-sm hover:bg-yellow-700">Reschedule</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden hidden"></div>
+
+  <script>
+    // Mobile Menu
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('mobile-hidden');
+      overlay.classList.toggle('hidden');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.add('mobile-hidden');
+      overlay.classList.add('hidden');
+    });
+
+    // Animate progress on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        bar.style.width = bar.style.width || '0%';
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 20,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu
+          if (window.innerWidth < 768) {
+            sidebar.classList.add('mobile-hidden');
+            overlay.classList.add('hidden');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

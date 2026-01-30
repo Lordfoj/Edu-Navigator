@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Edu-Navigator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            color: #eab308;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            background-color: #eab308;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(#e7b008, #e7b008), url('C:\Users\anant\Desktop\cep\About_us\Gemini_Generated_Image_p0nv6kp0nv6kp0nv.png');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            color: #333;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #e7b008;
+            margin: 20px auto;
+        }
+
+        /* Mission Section */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-card i {
+            font-size: 48px;
+            color: #eab308;
+            margin-bottom: 20px;
+        }
+
+        .mission-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        /* Counseling Section */
+        .counseling {
+            background: #eab308;
+            color: #333;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 10px;
+            margin-bottom: 80px;
+        }
+
+        .counseling h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .counseling p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .counseling-button {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .counseling-button:hover {
+            transform: scale(1.05);
+            background-color: #555;
+        }
+
+        /* Our Story */
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-image {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .story-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        .story-content h3 {
+            color: #eab308;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .stat {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            color: #eab308;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            color: #333;
+            font-size: 18px;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-content {
+            padding: 20px;
+        }
+
+        .team-member h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .team-member .role {
+            color: #eab308;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #eab308;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #eab308;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #eab308;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section ul {
+            color: #ccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #eab308;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: #ccc;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #eab308;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            margin-top: 30px;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .navbar-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar-links a {
+                width: 100%;
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .counseling {
+                padding: 40px 15px;
+            }
+
+            .counseling h2 {
+                font-size: 28px;
+            }
+
+            .counseling p {
+                font-size: 16px;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .section h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .counseling h2 {
+                font-size: 24px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="../home_page/homepage.html" class="logo">Edu-Navigator</a>
+        <ul class="navbar-links">
+            <li><a href="../home_page/homepage.html">Home</a></li>
+            <li><a href="../science_clg/science.html">Science</a></li>
+            <li><a href="../commerce_clg/commerce.html">Commerce</a></li>
+            <li><a href="../arts_clg/arts.html">Arts</a></li>
+            <li><a href="../diploma_clg/diploma.html">Diploma</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Edu-Navigator</h1>
+            <p>Your trusted guide to finding the perfect college and course for your bright future</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Mission Section -->
+        <section class="section">
+            <h2>Our Mission</h2>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Empower Students</h3>
+                    <p>Provide comprehensive guidance to help students make informed decisions about their education and career paths.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Discover Excellence</h3>
+                    <p>Connect students with top colleges and courses that match their aspirations and academic strengths.</p>
+                </div>
+                <div class="mission-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Build Futures</h3>
+                    <p>Bridge the gap between students and educational opportunities to shape successful careers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Counseling Section -->
+        <section class="counseling">
+            <h2>Book Your Free Counseling Session</h2>
+            <p>Get personalized guidance from our expert counselors to find the perfect college and course for your future. Schedule your free one-to-one session today!</p>
+            <a href="/counseling" class="counseling-button">Book Now</a>
+        </section>
+
+        <!-- Our Story -->
+        <section class="section">
+            <h2>Our Story</h2>
+            <div class="story">
+                <div class="story-image">
+                    <img src="images/team-photo.jpg" alt="Edu-Navigator Team">
+                </div>
+                <div class="story-content">
+                    <h3>Founded with Passion</h3>
+                    <p>Edu-Navigator was born from the vision of educators and career counselors who understood the challenges students face when choosing the right college. Launched in 2023, our platform has helped thousands of students across India find their perfect educational path.</p>
+                    <p>What started as a simple college directory has grown into a comprehensive guidance platform, featuring detailed college profiles, course comparisons, and personalized recommendations.</p>
+                    <p>Our commitment to transparency and accuracy ensures that every piece of information helps students make confident decisions about their future.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="section">
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Colleges Listed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Happy Students</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Courses Covered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/team-member1.jpg" alt="Dr. Priya Sharma">
+                    <div class="team-member-content">
+                        <h3>Dr. Priya Sharma</h3>
+                        <div class="role">Founder & CEO</div>
+                        <p>20+ years in education counseling</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member2.jpg" alt="Rahul Mehta">
+                    <div class="team-member-content">
+                        <h3>Rahul Mehta</h3>
+                        <div class="role">Technical Lead</div>
+                        <p>Expert in edtech development</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member3.jpg" alt="Anita Desai">
+                    <div class="team-member-content">
+                        <h3>Anita Desai</h3>
+                        <div class="role">Academic Advisor</div>
+                        <p>Former college principal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <h2>Ready to Start Your Journey?</h2>
+            <a href="../home_page/homepage.html" class="cta-button">Explore Colleges Now</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Edu-Navigator</h3>
+                <p>Your trusted partner in finding the perfect college and course. We help students across India make informed educational decisions.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> info@edunavigator.com</p>
+                    <p><i class="fas fa-phone"></i> +91-987-654-3210</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../home_page/homepage.html">Home</a></li>
+                    <li><a href="../science_clg/science.html">Science</a></li>
+                    <li><a href="../commerce_clg/commerce.html">Commerce</a></li>
+                    <li><a href="../arts_clg/arts.html">Arts</a></li>
+                    <li><a href="../diploma_clg/diploma.html">Diploma</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="/admissions">Admission Guide</a></li>
+                    <li><a href="/scholarships">Scholarships</a></li>
+                    <li><a href="/careers">Career Advice</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Stay Connected</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Edu-Navigator. All Rights Reserved. | 
+                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/terms">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

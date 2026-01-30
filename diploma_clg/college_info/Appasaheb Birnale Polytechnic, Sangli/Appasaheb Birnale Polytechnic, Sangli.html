@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appasaheb Birnale Polytechnic, Sangli</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html 
+    { 
+        scroll-behavior: smooth; 
+    }
+
+    /* Wave Divider */
+    .wave-divider {
+      width: 100%;
+      height: 50px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23facc15' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,197.3C384,181,480,139,576,138.7C672,139,768,181,864,202.7C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+      background-size: cover;
+    }
+
+    /* Scroll Gallery */
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    .scroll-container a { flex: 0 0 auto; scroll-snap-align: start; }
+    .scroll-container img {
+      width: 320px; height: 240px; object-fit: cover;
+      margin: 0 8px; border-radius: 8px; border: 2px solid black;
+      transition: transform 0.3s ease;
+    }
+    .scroll-container img:hover { transform: scale(1.05); }
+
+    /* Buttons */
+    .nav-button, .cta-button {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      padding: 0.5rem 1.5rem; font-size: 1rem;
+      border-radius: 9999px; border: 2px solid black;
+      text-decoration: none; color: #000;
+      background-color: #facc15;
+      display: inline-block; text-align: center;
+    }
+    .nav-button:hover, .cta-button:hover { transform: scale(1.1); background-color: #eab308; }
+    .cta-button.bg-black:hover { background-color: #222; }
+
+    /* Header */
+    .header-section {
+      position: relative; height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 2rem;
+      background-image: url("clg img.png");
+      background-size: cover; background-position: center;
+      color: white;
+    }
+    .header-section::before {
+      content: ""; position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 0;
+    }
+    .header-section h1, .header-section p { position: relative; z-index: 1; }
+
+    /* Navbar */
+    .navbar {
+      background-color: #333; overflow: hidden;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    }
+    .navbar a {
+      float: left; display: block; color: white;
+      text-align: center; padding: 14px 20px;
+      text-decoration: none; font-size: 18px;
+    }
+    .navbar a:hover { background-color: #ddd; color: black; }
+
+    /* Fade Animation */
+    .fade-in { opacity: 0; transform: translateY(20px);
+      animation: fadeIn 0.6s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .facilities-container {
+      background-color: white; border: 2px solid black;
+      border-radius: 8px; padding: 2rem;
+    }
+  </style>
+</head>
+<body class="bg-white font-sans pt-16">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="max-w-5xl mx-auto">
+      <a href="C:\Users\DYP\Desktop\cep\diploma_clg\diploma.html">Back to Polytechnic Colleges</a>
+      <a href="C:\Users\DYP\Desktop\cep\home_page\homepage.html">Home</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header-section">
+    <h1>Appasaheb Birnale Polytechnic, Sangli</h1>
+    <p>Premier Institute for Technical Education Since 1983</p>
+  </header>
+
+  <!-- Quick Info -->
+  <section class="py-12 px-4 max-w-5xl mx-auto fade-in">
+    <h2 class="text-3xl font-bold text-black mb-6 text-center">At a Glance</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-yellow-100 p-6 rounded-tl-3xl rounded-br-3xl border-2 border-black">
+        <p><strong>Established:</strong> 1983</p>
+        <p><strong>Location:</strong> Sangli, Maharashtra</p>
+      </div>
+      <div class="bg-yellow-200 p-6 rounded-tl-3xl rounded-br-3xl border-2 border-black">
+        <p><strong>Course Duration:</strong> 3 Years (Full-Time Diploma)</p>
+        <p><strong>Eligibility:</strong> 10th Pass (SSC)</p>
+      </div>
+      <div class="bg-yellow-300 p-6 rounded-tl-3xl rounded-br-3xl border-2 border-black">
+        <p><strong>Affiliation:</strong> MSBTE, Mumbai</p>
+        <p><strong>Approved by:</strong> AICTE, New Delhi</p>
+      </div>
+    </div>
+
+    <div class="mt-8 flex justify-center gap-6 flex-wrap">
+      <a href="https://dte.maharashtra.gov.in" target="_blank" class="cta-button bg-yellow-400 text-black">Apply Now</a>
+      <a href="https://abpoly.org/" target="_blank" class="cta-button bg-black text-white">Visit Website</a>
+      <a href="birnale-poly-more-info.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-12 fade-in">
+    <div class="nav-buttons text-center mb-4">
+      <a href="#img1" class="nav-button">← Left</a>
+      <a href="#img5" class="nav-button">Right →</a>
+    </div>
+    <div class="scroll-container px-4">
+      <a id="img1"><img src="download (1).jfif" alt="Main Building"></a>
+      <a id="img2"><img src="download (2).jfif" alt="Electronics Lab"></a>
+      <a id="img3"><img src="download (3).jfif" alt="Mechanical Workshop"></a>
+      <a id="img4"><img src="download.jfif" alt="Library"></a>
+      <a id="img5"><img src="images (1).jfif" alt="Campus View"></a>
+    </div>
+  </section>
+
+  <div class="wave-divider transform rotate-180"></div>
+
+  <!-- Departments -->
+  <section class="py-12 px-4 max-w-5xl mx-auto fade-in">
+    <h2 class="text-3xl font-bold text-black mb-6 text-center">Diploma Courses Offered</h2>
+    <ul class="space-y-4 text-black">
+      <li>1️⃣ Computer Engineering</li>
+      <li>2️⃣ Information Technology</li>
+      <li>3️⃣ Mechanical Engineering</li>
+      <li>4️⃣ Civil Engineering</li>
+      <li>5️⃣ Electrical Engineering</li>
+      <li>6️⃣ Electronics & Telecommunication Engineering</li>
+    </ul>
+  </section>
+
+  <!-- Facilities -->
+  <section class="py-12 px-4 max-w-5xl mx-auto fade-in">
+    <div class="facilities-container">
+      <h2 class="text-3xl font-bold text-black mb-6 text-center">Facilities</h2>
+      <ul class="space-y-4 text-black">
+<li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Modern and well-equipped laboratories</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Computer Lab for Junior Students</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Sports Ground and Indoor Games</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Guidance & Counseling Cell</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Wi-Fi enabled campus</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Placement and Career Guidance Cell</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Industry-linked training programs</span></li>
+        <li class="flex items-center"><span class="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center mr-4 border-2 border-black">✔</span><span class="text-black">Research & Innovation center</span></li>
+
+      </ul>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- Admission -->
+  <section class="py-12 px-4 max-w-5xl mx-auto fade-in bg-yellow-100 rounded-lg border-2 border-black">
+    <h2 class="text-3xl font-bold text-black mb-6 text-center">Admission Process</h2>
+    <p class="text-center text-black">
+      Admissions are carried out through the Centralized Admission Process (CAP) by DTE Maharashtra.
+      Candidates must register on the DTE portal, select the desired course, and participate in counselling.
+      Admission is based on 10th-grade merit and seat availability.
+    </p>
+  </section>
+
+  <div class="wave-divider transform rotate-180"></div>
+
+  <!-- Contact -->
+  <section class="py-12 px-4 max-w-5xl mx-auto fade-in">
+    <h2 class="text-3xl font-bold text-black mb-6 text-center">Contact Us</h2>
+    <div class="text-center text-black">
+      <p><strong>Address:</strong> South Shivajinagar, Sangli, Maharashtra - 416416</p>
+      <p><strong>Email:</strong> principal@abpoly.org</p>
+      <p><strong>Phone:</strong> +91 233 231 1034</p>
+    </div>
+  </section>
+
+</body>
+</html>

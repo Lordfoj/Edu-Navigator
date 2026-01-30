@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu-Navigator - Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            position: relative; /* Required for scrollspy */
+        }
+
+        /* Bootstrap Navbar Custom Styling */
+        .navbar-inverse {
+            background-color: #333;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-inverse .navbar-brand,
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+            font-size: 18px;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-inverse .navbar-nav > li > a:hover,
+        .navbar-inverse .navbar-nav > li.active > a {
+            background-color: #eab308;
+            color: #333;
+        }
+
+        .navbar-inverse .navbar-toggle {
+            border-color: #eab308;
+        }
+
+        .navbar-inverse .navbar-toggle .icon-bar {
+            background-color: white;
+        }
+
+        .navbar-inverse .navbar-toggle:hover {
+            background-color: #eab308;
+        }
+
+        /* Profile Dropdown Styling */
+        .profile-dropdown .dropdown-toggle {
+            color: white;
+            padding: 14px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-dropdown .dropdown-toggle i {
+            font-size: 20px;
+        }
+
+        .profile-dropdown .dropdown-toggle:hover {
+            background-color: #eab308;
+            color: #333;
+        }
+
+        .profile-dropdown .dropdown-menu {
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .profile-dropdown .dropdown-menu > li > a {
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+        }
+
+        .profile-dropdown .dropdown-menu > li > a:hover {
+            background-color: #eab308;
+            color: #333;
+        }
+
+        /* Header Section */
+        .header-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background-image: url("clg_board.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .header-text {
+            position: relative;
+            z-index: 1;
+            margin-top: -10rem;
+        }
+
+        .header-section h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 8px 8px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-section p {
+            color: white;
+            font-size: 26px;
+            max-width: 800px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Course Containers */
+        .course-container {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .course-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .course-image img {
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .course-image a.button {
+            background-color: #2f4f4f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .course-image a.button:hover {
+            background-color: #4682b4;
+        }
+
+        .course-content h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .course-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .course-section {
+            margin-bottom: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .testimonials h2 {
+            color: #333;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .testimonials h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #eab308;
+            margin: 20px auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .testimonial-card p {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card h3 {
+            color: #eab308;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card .role {
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Counseling Section */
+        .counseling {
+            background: #eab308;
+            color: #333;
+            text-align: center;
+            padding: 60px 20px;
+            margin: 40px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+        }
+
+        .counseling h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .counseling p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .counseling-button {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .counseling-button:hover {
+            transform: scale(1.05);
+            background-color: #555;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            color: #eab308;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer-section p, .footer-section ul {
+            margin: 0;
+            padding: 0;
+            color: #e0e6ed;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #e0e6ed;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #eab308;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #eab308;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-media a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #eab308;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 15px;
+            background-color: #eab308;
+            color: #333;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+
+        .footer-bottom a {
+            color: #e0e6ed;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-bottom a:hover {
+            color: #eab308;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .header-section {
+                height: 80vh;
+            }
+            .header-section h1 {
+                font-size: 36px;
+            }
+            .header-section p {
+                font-size: 20px;
+            }
+            .course-container {
+                width: 90%;
+            }
+            .course-image img {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                height: 60vh;
+                padding: 1.5rem;
+            }
+
+            .header-text {
+                margin-top: 0;
+            }
+
+            .header-section h1 {
+                font-size: 28px;
+            }
+
+            .header-section p {
+                font-size: 16px;
+            }
+
+            .course-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .course-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .course-image img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .testimonials h2 {
+                font-size: 28px;
+            }
+
+            .counseling {
+                padding: 40px 15px;
+            }
+
+            .counseling h2 {
+                font-size: 28px;
+            }
+
+            .counseling p {
+                font-size: 16px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .social-media {
+                justify-content: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-form input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-form button {
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-section {
+                height: 50vh;
+            }
+
+            .header-section h1 {
+                font-size: 24px;
+            }
+
+            .header-section p {
+                font-size: 14px;
+            }
+
+            .testimonials h2 {
+                font-size: 24px;
+            }
+
+            .counseling h2 {
+                font-size: 24px;
+            }
+        }
+            .auth-btn {
+        display: inline-block;
+        transform: translateY(0);
+    }
+        /*hover for sign in and login buttons*/
+    .auth-btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .login-btn:hover {
+        background-color: #ffffff !important;
+        box-shadow: 10px 20px 20px #eab308(255, 255, 255);
+    }
+
+    .signup-btn:hover {
+        background-color: #eab308 !important;
+        color: #333 !important;
+        border-color: #333;
+        box-shadow: 20px 20px 20px rgba(234,179,8,0.4);
+    }
+        /* Responsive Button Styling */
+        .cta-button {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 9999px;
+            border: 2px solid black;
+            text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
+            min-width: 120px;
+            text-decoration: none;
+            color: #000;
+        }
+        .cta-button:hover {
+            transform: scale(1.1);
+            background-color: #eab308;
+        }
+
+        /* Responsive Button Styling */
+        @media screen and (max-width: 640px) {
+            .cta-button {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.875rem;
+                min-width: 100px;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Edu-Navigator</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#science">Science</a></li>
+                    <li><a href="#commerce">Commerce</a></li>
+                    <li><a href="#arts">Arts</a></li>
+                    <li><a href="#diploma">Diploma</a></li>
+                    <li><a href="../About_us/about.html">About Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="profile-dropdown dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> Profile <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="C:\Users\DYP\Desktop\cep\profile\profile.html">View Profile</a></li>
+                            <li><a href="C:\Users\DYP\Desktop\cep\profile\profile.html">Settings</a></li>
+                            <li><a href="C:\Users\DYP\Desktop\cep\profile\profile.html">My Applications</a></li>
+                            <li><a href="C:\Users\DYP\Desktop\cep\login\login\login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="header-section fade-in">
+        <div class="header-text">
+            <h1>Welcome to Edu-Navigator</h1>
+            <p>Explore the right college for your course, here at Edu-Navigator</p>
+        </div>
+    </header>
+
+    <!-- Science Section -->
+    <div id="science" class="course-section">
+        <div class="course-container">
+            <div class="course-image">
+                <img src="scienceimage.webp" alt="Science Image">
+                <a href="C:\Users\DYP\Desktop\cep\science_clg\science.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="course-content">
+                <h2>Science</h2>
+                <p>Science colleges offer courses like Physics, Chemistry, and Biology, preparing students for careers in research and technology.</p>
+                <p>Programs include B.Sc. degrees with specializations in fields like Biotechnology, Computer Science, and Environmental Science.</p>
+                <p>Top institutions provide state-of-the-art labs and opportunities for internships and advanced studies.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commerce Section -->
+    <div id="commerce" class="course-section">
+        <div class="course-container">
+            <div class="course-image">
+                <img src="commerce_image.webp" alt="Commerce Image">
+                <a href="C:\Users\DYP\Desktop\cep\commerce_clg\commerce.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="course-content">
+                <h2>Commerce</h2>
+                <p>Commerce colleges focus on finance, accounting, and business management, ideal for aspiring entrepreneurs and financial experts.</p>
+                <p>Courses like B.Com and BBA cover subjects such as Economics, Taxation, and Marketing.</p>
+                <p>Graduates can pursue careers in banking, corporate sectors, or higher studies like MBA.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arts Section -->
+    <div id="arts" class="course-section">
+        <div class="course-container">
+            <div class="course-image">
+                <img src="liberal_arts_image.jpg" alt="Arts Image">
+                <a href="C:\Users\DYP\Desktop\cep\arts_clg\arts.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="course-content">
+                <h2>Arts</h2>
+                <p>Arts colleges offer diverse programs in Humanities, including Literature, History, and Sociology, fostering critical thinking.</p>
+                <p>B.A. degrees allow specialization in fields like Psychology, Political Science, and Fine Arts.</p>
+                <p>Graduates excel in careers like journalism, education, and public policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diploma Section -->
+    <div id="diploma" class="course-section">
+        <div class="course-container">
+            <div class="course-image">
+                <img src="diploma_image.webp" alt="Diploma Image">
+                <a href="C:\Users\DYP\Desktop\cep\diploma_clg\diploma.html" target="_blank" class="cta-button bg-yellow-400 text-black">More Info</a>
+            </div>
+            <div class="course-content">
+                <h2>Diploma</h2>
+                <p>Diploma courses provide practical, skill-based training in fields like Engineering, IT, and Healthcare.</p>
+                <p>Programs are shorter than degrees, offering quick entry into industries like automotive or hospitality.</p>
+                <p>Colleges emphasize hands-on learning, preparing students for immediate employment.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Students Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <img src="images/testimonial1.jpg" alt="Anjali Patel">
+                <p>"Edu-Navigator helped me find the perfect science college for my B.Sc. in Biotechnology. The guidance was spot-on!"</p>
+                <h3>Anjali Patel</h3>
+                <div class="role">B.Sc. Student</div>
+            </div>
+            <div class="testimonial-card">
+                <img src="images/testimonial2.jpg" alt="Rohan Sharma">
+                <p>"Thanks to Edu-Navigator, I discovered a commerce program that aligned with my career goals. Highly recommend!"</p>
+                <h3>Rohan Sharma</h3>
+                <div class="role">B.Com Graduate</div>
+            </div>
+            <div class="testimonial-card">
+                <img src="images/testimonial3.jpg" alt="Priya Desai">
+                <p>"The platform made choosing an arts college so easy. I’m now studying Psychology and loving it!"</p>
+                <h3>Priya Desai</h3>
+                <div class="role">B.A. Student</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counseling Section -->
+    <section class="counseling">
+        <h2>Book Your Free Counseling Session</h2>
+        <p>Get personalized guidance from our expert counselors to find the perfect college and course for your future. Schedule your free one-to-one session today!</p>
+        <a href="C:\Users\DYP\Desktop\cep\counseling\counseling.html" class="counseling-button" aria-label="Book a counseling session">Book Now</a>
+    </section>
+
+  <!-- Login & Sign-Up Links Container with HOVER ANIMATION -->
+<section class="auth-links" style="padding: 50px 20px; background-color: #f8f9fa; text-align: center;">
+    <div class="container">
+        <h2 style="color: #333; margin-bottom: 30px; font-size: 32px;">Get Started Today</h2>
+        <p style="color: #555; font-size: 18px; max-width: 700px; margin: 0 auto 40px;">
+            Already have an account? Log in. New here? Create your free account now!
+        </p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <!-- Login Button -->
+            <a href="C:\Users\DELL\Desktop\cep\login\login\login.html" 
+               class="auth-btn login-btn" 
+               style="background-color: #eab308; color: #333; font-weight: bold; padding: 12px 32px; border-radius: 50px; text-decoration: none; font-size: 18px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(234,179,8,0.3);">
+               Login
+            </a>
+            <!-- Sign Up Button -->
+            <a href="C:\Users\DELL\Desktop\cep\login\signup\signup.html" 
+               class="auth-btn signup-btn" 
+               style="background-color: #333; color: white; font-weight: bold; padding: 12px 32px; border-radius: 50px; text-decoration: none; border: 2px solid #eab308; font-size: 18px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+               Sign Up
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Edu-Navigator</h3>
+                <p>Edu-Navigator helps students find the perfect college and course to shape their future. Explore our resources and start your journey today!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> support@edunavigator.com</p>
+                    <p><i class="fas fa-phone"></i> +91-123-456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 456 Education Lane, City, India</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="/science_clg/science.html">Science</a></li>
+                    <li><a href="/commerce_clg/commerce.html">Commerce</a></li>
+                    <li><a href="/arts_clg/arts.html">Arts</a></li>
+                    <li><a href="/diploma_clg/diploma.html">Diploma</a></li>
+                    <li><a href="../About_us/about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="/admissions">Admissions Guide</a></li>
+                    <li><a href="/scholarships">Scholarships</a></li>
+                    <li><a href="/careers">Career Paths</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Stay Connected</h3>
+                <div class="social-media">
+                    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email for newsletter">
+                        <button type="submit" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Edu-Navigator. All Rights Reserved. | 
+                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/terms">Terms of Service</a> | 
+                <a href="/contact">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+</html>
